@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Wordle Mania</title>
+</head>
+<body>
+    <main>
+        <div class="headings">
+        <h1>Wordle Mania</h1>
+        <h2 id="correctWord"></h2>
+    </div>
+        <div class="container">
+            <div class="grid">
+                <div class="row row-1">
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                </div>
+                <div class="row row-2">
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                </div>
+                <div class="row row-3">
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                </div>
+                <div class="row row-4">
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                </div>
+                <div class="row row-5">
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                </div>
+                <div class="row row-6">
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                </div>
+
+            </div>
+            <div class="button-container">
+                <div class="btn-row">
+                    <button class="key" data-key="q">q</button>
+                    <button class="key" data-key="w">w</button>
+                    <button class="key" data-key="e">e</button>
+                    <button class="key" data-key="r">r</button>
+                    <button class="key" data-key="t">t</button>
+                    <button class="key" data-key="y">y</button>
+                    <button class="key" data-key="u">u</button>
+                    <button class="key" data-key="i">i</button>
+                    <button class="key" data-key="o">o</button>
+                    <button class="key" data-key="p">p</button>
+                </div>
+                <div class="btn-row btn-row-2">
+                    <button class="key" data-key="a">a</button>
+                    <button class="key" data-key="s">s</button>
+                    <button class="key" data-key="d">d</button>
+                    <button class="key" data-key="f">f</button>
+                    <button class="key" data-key="g">g</button>
+                    <button class="key" data-key="h">h</button>
+                    <button class="key" data-key="j">j</button>
+                    <button class="key" data-key="k">k</button>
+                    <button class="key" data-key="l">l</button>
+                </div>
+                <div class="btn-row">
+                    <button id="enter">enter</button>
+                    <button class="key" data-key="z">z</button>
+                    <button class="key" data-key="x">x</button>
+                    <button class="key" data-key="c">c</button>
+                    <button class="key" data-key="v">v</button>
+                    <button class="key" data-key="b">b</button>
+                    <button class="key" data-key="n">n</button>
+                    <button class="key" data-key="m">m</button>
+                    <button id="delete">🔙</button>
+                </div>
+                <div class="play-again">
+                <button id="reset" class="hidden">Play Again?</button>
+            </div>
+            </div>
+        </div>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

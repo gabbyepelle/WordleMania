@@ -1,0 +1,141 @@
+const row1 = document.querySelector('.row-1').querySelectorAll('.square');
+const row2 = document.querySelector('.row-2').querySelectorAll('.square');
+const row3 = document.querySelector('.row-3').querySelectorAll('.square');
+const row4 = document.querySelector('.row-4').querySelectorAll('.square');
+const row5 = document.querySelector('.row-5').querySelectorAll('.square');
+const row6 = document.querySelector('.row-6').querySelectorAll('.square');
+const reset = document.querySelector('#reset');
+const squares = document.querySelectorAll('.square');
+
+const words = ['apple', 'beach' , 'brain', 'brush', 'chair', 'chest', 'chord', 'click', 'clock', 'cloud', 'dance', 'diary', 'drink', 'earth', 'flute', 'fruit', 'ghost', 'happy', 'heart', 'juice', 'light', 'money', 'music', 'pizza', 'salad', 'woman', 'youth'];// temporary list
+    
+let answer = words[Math.floor(Math.random()* words.length-1)] ;
+console.log(answer)   
+
+const correctWord = document.querySelector('#correctWord');
+correctWord.classList.toggle('hidden');
+
+
+const board = {
+    1: [...row1],
+    2: [...row2],
+    3: [...row3],
+    4: [...row4],
+    5: [...row5],
+    6: [...row6]
+}
+//console.log(board[1])
+
+let guess = "";
+let chance = 1;
+const keys = document.querySelectorAll('.key');
+const enter = document.querySelector('#enter');
+const del = document.querySelector('#delete');
+
+keys.forEach((key)=>{
+    key.addEventListener('click', ()=>{
+        console.log(key.dataset.key)
+        guess+=key.dataset.key
+        console.log(guess)
+        for(let i=0; i<5; i++){
+            if(board[chance][i].textContent.trim()===""){
+                board[chance][i].textContent = key.dataset.key
+                break
+            }
+        }
+
+        })
+    })
+
+del.addEventListener('click', ()=>{
+    for(let i=4; i>=0; i--){
+        if(board[chance][i].textContent.trim()!==""){
+            board[chance][i].textContent = ""
+            break
+        }
+    }
+    })
+
+gameOver = function(){
+    //disable all buttons
+    //if word is wrong show correct word
+    if(guess !== answer){
+        correctWord.textContent = `The word is ${answer}`;
+    }
+    else{
+        correctWord.textContent = "Superb!"
+    }
+        correctWord.classList.toggle('hidden')
+        keys.forEach((key)=>{
+            key.disabled = true;
+        })
+        enter.disabled = true;
+        del.disabled = true;
+        
+        reset.classList.toggle('hidden');
+}
+
+
+
+reset.addEventListener('click', ()=>{
+    keys.forEach((key)=>{
+        key.classList.remove('wrong')
+        key.disabled = false;
+    })
+    enter.disabled = false;
+    del.disabled = false;
+    guess = ""
+    chance = 1;
+    answer = words[Math.floor(Math.random()* words.length-1)] ;
+    console.log(answer)
+    correctWord.textContent = `The word is ${answer}`;
+    correctWord.classList.toggle('hidden')
+    reset.classList.toggle('hidden');
+    //remove all green, yellow, and grey classes from squares
+    for (let square of squares){
+        square.textContent = "";
+        square.classList.remove('green')
+        square.classList.remove('yellow')
+        square.classList.remove('gray')
+    }
+
+
+})
+enter.addEventListener(('click'), ()=>{
+    //don't allow user to input word < 5 letters
+    for(let i=0; i<=4; i++){
+        if(guess[i]===answer[i]){
+            board[chance][i].classList.add('green')
+        }else if(answer.includes(guess[i])){
+            board[chance][i].classList.add('yellow')
+        }else{
+            board[chance][i].classList.add('gray')
+            keys.forEach(key=>{
+                if(guess.includes(key.dataset.key) && !answer.includes(key.dataset.key)){
+                    key.classList.add('wrong')
+                }
+            })
+        }
+           
+            
+        
+    }
+    if(guess===answer){
+        gameOver()
+    }else{
+        chance+=1
+        guess = ""
+
+    }
+    if(chance > 6){
+        gameOver()
+    }
+})
+
+
+//TODO
+// make a larger word bank
+//add CSS animations
+//allow keyboard input
+//don't allow user to input word < 5 letters long
+//don't allow user to input gibberish

@@ -1,0 +1,114 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+
+main{
+    display: flex;
+    flex-direction: column;
+}
+
+.headings{
+    align-self: center;
+    font-family: 'Newsreader', serif;
+    font-size: 2rem;
+    text-align: center;
+}
+
+
+.container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+
+
+.grid{
+    width: 400px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.row{
+    display: flex;
+    flex:1; 
+    gap: 5px;
+   
+}
+
+.square{
+    border: 1px solid grey;
+    flex:1;
+    text-transform: uppercase;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.key{
+    height: 60px;
+    width: 40px;
+    background-color: #DCDCDC;
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 3px;
+    text-transform: uppercase;
+    border: none;
+
+}
+
+#enter, #delete{
+    background-color: lightgray;
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 3px;
+    height: 60px;
+   border:none;
+
+}
+
+.btn-row-2 {
+ margin-left: 23px;
+  }
+
+.yellow{
+    background-color: yellow;
+    color: white;
+}
+
+.gray{
+    background-color: gray;
+    color: white;
+}
+
+.green{
+    background-color: green;
+    color: white;
+}
+
+.play-again{
+    text-align: center;
+    margin-top: 20px;
+}
+
+#reset{
+    height: 30px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+}
+
+.hidden{
+    display: none;
+}
+
+.wrong{
+    background-color: grey;
+}
