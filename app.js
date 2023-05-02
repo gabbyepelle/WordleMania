@@ -32,9 +32,51 @@ const keys = document.querySelectorAll('.key');
 const enter = document.querySelector('#enter');
 const del = document.querySelector('#delete');
 
+checkGuess = function(){
+    if(guess.length < 5){
+        alert("Too Short!")
+    }else{
+        for(let i=0; i<=4; i++){
+            if(guess[i]===answer[i]){
+                board[chance][i].classList.add('green')
+            }else if(answer.includes(guess[i])){
+                board[chance][i].classList.add('yellow')
+            }else{
+                board[chance][i].classList.add('gray')
+                keys.forEach(key=>{
+                    if(guess.includes(key.dataset.key) && !answer.includes(key.dataset.key)){
+                        key.classList.add('wrong')
+                    }
+                })
+            }   
+        }
+        if(guess===answer){
+            gameOver()
+        }else{
+            chance+=1
+            guess = ""
+    
+        }
+        if(chance > 6){
+            gameOver()
+        }
+    
+    }
+}
+
+deleteLetter = function(){
+    for(let i=4; i>=0; i--){
+        if(board[chance][i].textContent.trim()!==""){
+            board[chance][i].textContent = ""
+            break
+        }
+    }
+}
+
+
 keys.forEach((key)=>{
     key.addEventListener('click', ()=>{
-        console.log(key.dataset.key)
+        //console.log(key.dataset.key)
         guess+=key.dataset.key
         console.log(guess)
         for(let i=0; i<5; i++){
@@ -47,14 +89,7 @@ keys.forEach((key)=>{
         })
     })
 
-del.addEventListener('click', ()=>{
-    for(let i=4; i>=0; i--){
-        if(board[chance][i].textContent.trim()!==""){
-            board[chance][i].textContent = ""
-            break
-        }
-    }
-    })
+del.addEventListener('click', deleteLetter)
 
 gameOver = function(){
     //disable all buttons
@@ -101,41 +136,29 @@ reset.addEventListener('click', ()=>{
 
 
 })
-enter.addEventListener(('click'), ()=>{
-    //don't allow user to input word < 5 letters
-    for(let i=0; i<=4; i++){
-        if(guess[i]===answer[i]){
-            board[chance][i].classList.add('green')
-        }else if(answer.includes(guess[i])){
-            board[chance][i].classList.add('yellow')
-        }else{
-            board[chance][i].classList.add('gray')
-            keys.forEach(key=>{
-                if(guess.includes(key.dataset.key) && !answer.includes(key.dataset.key)){
-                    key.classList.add('wrong')
-                }
-            })
-        }
-           
-            
-        
-    }
-    if(guess===answer){
-        gameOver()
-    }else{
-        chance+=1
-        guess = ""
-
-    }
-    if(chance > 6){
-        gameOver()
-    }
-})
-
+enter.addEventListener('click', checkGuess)
 
 //TODO
 // make a larger word bank
 //add CSS animations
-//allow keyboard input
 //don't allow user to input word < 5 letters long
 //don't allow user to input gibberish
+
+
+//enabling keyboard input
+const alphabet = "abcdefghijklmnopqrstuvwxyz"
+document.addEventListener('keyup', (e)=>{
+    if (alphabet.includes(e.key) ||alphabet.toUpperCase().includes(e.key)){
+        guess+=e.key
+        for(let i=0; i<5; i++){
+            if(board[chance][i].textContent.trim()===""){
+                board[chance][i].textContent = e.key;
+                break
+            }
+        }
+    }else if(e.key === "Enter"){
+        checkGuess()
+    }else if(e.key === "Backspace"){
+        deleteLetter()
+    }
+})
