@@ -1,3 +1,6 @@
+import { WORDS} from "./words.js";
+
+
 const row1 = document.querySelector('.row-1').querySelectorAll('.square');
 const row2 = document.querySelector('.row-2').querySelectorAll('.square');
 const row3 = document.querySelector('.row-3').querySelectorAll('.square');
@@ -7,9 +10,9 @@ const row6 = document.querySelector('.row-6').querySelectorAll('.square');
 const reset = document.querySelector('#reset');
 const squares = document.querySelectorAll('.square');
 
-const words = ['apple', 'beach' , 'brain', 'brush', 'chair', 'chest', 'chord', 'click', 'clock', 'cloud', 'dance', 'diary', 'drink', 'earth', 'flute', 'fruit', 'ghost', 'happy', 'heart', 'juice', 'light', 'money', 'music', 'pizza', 'salad', 'woman', 'youth'];// temporary list
+
     
-let answer = words[Math.floor(Math.random()* words.length-1)] ;
+let answer = WORDS[Math.floor(Math.random()* WORDS.length-1)] ;
 console.log(answer)   
 
 const correctWord = document.querySelector('#correctWord');
@@ -32,9 +35,11 @@ const keys = document.querySelectorAll('.key');
 const enter = document.querySelector('#enter');
 const del = document.querySelector('#delete');
 
-checkGuess = function(){
+const checkGuess = function(){
     if(guess.length < 5){
         alert("Too Short!")
+    }else if(!WORDS.includes(guess)){
+        alert("Please guess a valid word")
     }else{
         for(let i=0; i<=4; i++){
             if(guess[i]===answer[i]){
@@ -64,7 +69,7 @@ checkGuess = function(){
     }
 }
 
-deleteLetter = function(){
+const deleteLetter = function(){
     for(let i=4; i>=0; i--){
         if(board[chance][i].textContent.trim()!==""){
             board[chance][i].textContent = ""
@@ -91,7 +96,7 @@ keys.forEach((key)=>{
 
 del.addEventListener('click', deleteLetter)
 
-gameOver = function(){
+const gameOver = function(){
     //disable all buttons
     //if word is wrong show correct word
     if(guess !== answer){
@@ -138,11 +143,7 @@ reset.addEventListener('click', ()=>{
 })
 enter.addEventListener('click', checkGuess)
 
-//TODO
-// make a larger word bank
-//add CSS animations
-//don't allow user to input word < 5 letters long
-//don't allow user to input gibberish
+
 
 
 //enabling keyboard input
@@ -162,3 +163,6 @@ document.addEventListener('keyup', (e)=>{
         deleteLetter()
     }
 })
+
+//TODO
+//add CSS animations
