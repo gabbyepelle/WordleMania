@@ -38,8 +38,6 @@ const del = document.querySelector('#delete');
 const checkGuess = function(){
     if(guess.length < 5){
         alert("Too Short!")
-    }else if(!WORDS.includes(guess)){
-        alert("Please guess a valid word")
     }else{
         for(let i=0; i<=4; i++){
             if(guess[i]===answer[i]){
