@@ -77,17 +77,23 @@ main{
  margin-left: 23px;
   }
 
+
+
 .yellow{
     background-color: yellow;
     color: white;
+    animation: flip .5s;
+    
 }
 
 .gray{
+    animation: flip .5s;
     background-color: gray;
     color: white;
 }
 
 .green{
+    animation: flip .5s;
     background-color: green;
     color: white;
 }
@@ -112,3 +118,26 @@ main{
 .wrong{
     background-color: grey;
 }
+
+.right{
+    background-color: green;
+}
+
+.almost{
+    background-color: yellow;
+}
+
+
+
+@keyframes flip{
+    0%, 100%{
+        transform: rotate3d(0, 0, 0, 0);
+    }
+    
+    50%{
+        color: transparent;
+        transform: rotate3d(1, 0, 0, 90deg);
+
+    }
+}
+

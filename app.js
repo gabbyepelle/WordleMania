@@ -34,21 +34,36 @@ let chance = 1;
 const keys = document.querySelectorAll('.key');
 const enter = document.querySelector('#enter');
 const del = document.querySelector('#delete');
+const sleep = (time) => {
+    return new Promise((resolve) => setTimeout(resolve, time))
+  }
 
-const checkGuess = function(){
+const checkGuess = async function(){
     if(guess.length < 5){
         alert("Too Short!")
     }else{
         for(let i=0; i<=4; i++){
+            await sleep(450)
             if(guess[i]===answer[i]){
                 board[chance][i].classList.add('green')
+                keys.forEach(key=>{
+                    if(key.dataset.key === guess[i]){
+                        key.classList.add("right")
+                    }
+                })
+
             }else if(answer.includes(guess[i])){
                 board[chance][i].classList.add('yellow')
+                keys.forEach(key=>{
+                    if(key.dataset.key === guess[i]){
+                        key.classList.add("almost")
+                    }
+                })
             }else{
                 board[chance][i].classList.add('gray')
                 keys.forEach(key=>{
-                    if(guess.includes(key.dataset.key) && !answer.includes(key.dataset.key)){
-                        key.classList.add('wrong')
+                    if(key.dataset.key === guess[i]){
+                        key.classList.add("wrong")
                     }
                 })
             }   
@@ -124,8 +139,7 @@ reset.addEventListener('click', ()=>{
     del.disabled = false;
     guess = ""
     chance = 1;
-    answer = words[Math.floor(Math.random()* words.length-1)] ;
-    console.log(answer)
+    let answer = WORDS[Math.floor(Math.random()* WORDS.length-1)] ;
     correctWord.textContent = `The word is ${answer}`;
     correctWord.classList.toggle('hidden')
     reset.classList.toggle('hidden');
