@@ -133,6 +133,8 @@ const gameOver = function(){
 reset.addEventListener('click', ()=>{
     keys.forEach((key)=>{
         key.classList.remove('wrong')
+        key.classList.remove('almost')
+        key.classList.remove('right')
         key.disabled = false;
     })
     enter.disabled = false;
@@ -177,4 +179,5 @@ document.addEventListener('keyup', (e)=>{
 })
 
 //TODO
-//add CSS animations
+//add CSS animations for winner
+//change add/remove to toggle
