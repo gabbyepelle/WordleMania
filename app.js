@@ -45,25 +45,25 @@ const checkGuess = async function(){
         for(let i=0; i<=4; i++){
             await sleep(450)
             if(guess[i]===answer[i]){
-                board[chance][i].classList.add('green')
+                board[chance][i].classList.toggle('green')
                 keys.forEach(key=>{
                     if(key.dataset.key === guess[i]){
-                        key.classList.add("right")
+                        key.classList.toggle("right")
                     }
                 })
 
             }else if(answer.includes(guess[i])){
-                board[chance][i].classList.add('yellow')
+                board[chance][i].classList.toggle('yellow')
                 keys.forEach(key=>{
                     if(key.dataset.key === guess[i]){
-                        key.classList.add("almost")
+                        key.classList.toggle("almost")
                     }
                 })
             }else{
                 board[chance][i].classList.add('gray')
                 keys.forEach(key=>{
                     if(key.dataset.key === guess[i]){
-                        key.classList.add("wrong")
+                        key.classList.toggle("wrong")
                     }
                 })
             }   
@@ -132,9 +132,9 @@ const gameOver = function(){
 
 reset.addEventListener('click', ()=>{
     keys.forEach((key)=>{
-        key.classList.remove('wrong')
-        key.classList.remove('almost')
-        key.classList.remove('right')
+        key.classList.toggle('wrong')
+        key.classList.toggle('almost')
+        key.classList.toggle('right')
         key.disabled = false;
     })
     enter.disabled = false;
